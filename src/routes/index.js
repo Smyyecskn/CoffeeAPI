@@ -10,5 +10,14 @@ router.use("/auth", require("./auth"));
 router.use("/user", require("./user"));
 // token:
 router.use("/token", require("./token"));
+//category:
+router.use("/category", require("./category"));
+//coffee:
+router.use("/coffee", require("./coffee"));
+//orders:
+router.use("/order", require("./order"));
+
+/* ------------------------------------------------------- */
+
 
 module.exports = router;

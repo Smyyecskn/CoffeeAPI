@@ -19,12 +19,11 @@ dbConnection();
 // Auhentication:
 app.use(require("./src/middlewares/authentication"));
 
-// findSearchSortPage / res.getModelList:
+// res.getModelList:
 app.use(require("./src/middlewares/queryHandler"));
 
 //Routes
-
-app.use(require("./src/routes"));
+app.use("/", require("./src/routes"));
 
 app.all("/", (req, res) => {
   res.send({
@@ -34,4 +33,8 @@ app.all("/", (req, res) => {
   });
 });
 
+// errorHandler:
+app.use(require("./src/middlewares/errorHandler"));
+
 app.listen(PORT, () => console.log("http://127.0.0.1:" + PORT));
+// require("./src/helpers/sync")();

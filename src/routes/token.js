@@ -1,6 +1,7 @@
 "use strict";
 
 const router = require("express").Router();
+/* ------------------------------------------------------- */
 
 const token = require("../controllers/token");
 const { isAdmin } = require("../middlewares/permissions");
