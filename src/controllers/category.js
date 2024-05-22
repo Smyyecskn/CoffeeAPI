@@ -1,14 +1,14 @@
 "use strict";
 
-// Coffee Controller:
+// Category Controller:
 
-const Coffee = require("../models/coffee");
+const Category = require("../models/category");
 
 module.exports = {
   list: async (req, res) => {
     /*
-            #swagger.tags = ["Coffees"]
-            #swagger.summary = "List Coffees"
+            #swagger.tags = ["Categorys"]
+            #swagger.summary = "List Categorys"
             #swagger.description = `
                 You can send query with endpoint for filter[], search[], sort[], page and limit.
                 <ul> Examples:
@@ -20,11 +20,11 @@ module.exports = {
             `
         */
 
-    const data = await res.getModelList(Coffee);
+    const data = await res.getModelList(Category);
 
     res.status(200).send({
       error: false,
-      details: await res.getModelListDetails(Coffee),
+      details: await res.getModelListDetails(Category),
       data,
     });
   },
@@ -33,11 +33,11 @@ module.exports = {
 
   create: async (req, res) => {
     /*
-            #swagger.tags = ["Coffees"]
-            #swagger.summary = "Create Coffee"
+            #swagger.tags = ["Categorys"]
+            #swagger.summary = "Create Category"
         */
 
-    const data = await Coffee.create(req.body);
+    const data = await Category.create(req.body);
 
     res.status(201).send({
       error: false,
@@ -47,11 +47,11 @@ module.exports = {
 
   read: async (req, res) => {
     /*
-            #swagger.tags = ["Coffees"]
-            #swagger.summary = "Get Single Coffee"
+            #swagger.tags = ["Categorys"]
+            #swagger.summary = "Get Single Category"
         */
 
-    const data = await Coffee.findOne({ _id: req.params.id });
+    const data = await Category.findOne({ _id: req.params.id });
 
     res.status(200).send({
       error: false,
@@ -61,28 +61,28 @@ module.exports = {
 
   update: async (req, res) => {
     /*
-            #swagger.tags = ["Coffees"]
-            #swagger.summary = "Update Coffee"
+            #swagger.tags = ["Categorys"]
+            #swagger.summary = "Update Category"
         */
 
-    const data = await Coffee.updateOne({ _id: req.params.id }, req.body, {
+    const data = await Category.updateOne({ _id: req.params.id }, req.body, {
       runValidators: true,
     });
 
     res.status(202).send({
       error: false,
       data,
-      new: await Coffee.findOne({ _id: req.params.id }),
+      new: await Category.findOne({ _id: req.params.id }),
     });
   },
 
   delete: async (req, res) => {
     /*
-            #swagger.tags = ["Coffees"]
-            #swagger.summary = "Delete Coffee"
+            #swagger.tags = ["Categorys"]
+            #swagger.summary = "Delete Category"
         */
 
-    const data = await Coffee.deleteOne({ _id: req.params.id });
+    const data = await Category.deleteOne({ _id: req.params.id });
 
     res.status(data.deletedCount ? 204 : 404).send({
       error: !data.deletedCount,
