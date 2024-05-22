@@ -4,7 +4,7 @@ const { mongoose } = require("../configs/dbConnection");
 
 const CategorySchema = new mongoose.Schema(
   {
-    category_title: {
+    title: {
       type: String,
       trim: true,
       required: true,

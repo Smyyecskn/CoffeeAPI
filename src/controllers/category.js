@@ -7,8 +7,8 @@ const Category = require("../models/category");
 module.exports = {
   list: async (req, res) => {
     /*
-            #swagger.tags = ["Categorys"]
-            #swagger.summary = "List Categorys"
+            #swagger.tags = ["Categories"]
+            #swagger.summary = "List Categories"
             #swagger.description = `
                 You can send query with endpoint for filter[], search[], sort[], page and limit.
                 <ul> Examples:
@@ -18,7 +18,7 @@ module.exports = {
                     <li>URL/?<b>page=2&limit=1</b></li>
                 </ul>
             `
-        */
+    */
 
     const data = await res.getModelList(Category);
 
@@ -33,9 +33,9 @@ module.exports = {
 
   create: async (req, res) => {
     /*
-            #swagger.tags = ["Categorys"]
+            #swagger.tags = ["Categories"]
             #swagger.summary = "Create Category"
-        */
+    */
 
     const data = await Category.create(req.body);
 
@@ -47,9 +47,9 @@ module.exports = {
 
   read: async (req, res) => {
     /*
-            #swagger.tags = ["Categorys"]
+            #swagger.tags = ["Categories"]
             #swagger.summary = "Get Single Category"
-        */
+    */
 
     const data = await Category.findOne({ _id: req.params.id });
 
@@ -61,9 +61,9 @@ module.exports = {
 
   update: async (req, res) => {
     /*
-            #swagger.tags = ["Categorys"]
+            #swagger.tags = ["Categories"]
             #swagger.summary = "Update Category"
-        */
+    */
 
     const data = await Category.updateOne({ _id: req.params.id }, req.body, {
       runValidators: true,
@@ -78,9 +78,9 @@ module.exports = {
 
   delete: async (req, res) => {
     /*
-            #swagger.tags = ["Categorys"]
+            #swagger.tags = ["Categories"]
             #swagger.summary = "Delete Category"
-        */
+    */
 
     const data = await Category.deleteOne({ _id: req.params.id });
 

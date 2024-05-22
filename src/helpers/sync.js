@@ -236,8 +236,8 @@ module.exports = async function () {
   const Category = require("../models/category");
   await Category.deleteMany(); // !!! Clear collection.
   await Category.create({
-    category_id: 2,
-    category_title: "Kahve",
+    _id: 2,
+    title: "Kahve",
   });
 
   console.log("* Synchronized.");

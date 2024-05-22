@@ -9,7 +9,7 @@ const OrderSchema = new mongoose.Schema(
       ref: "User",
       required: true, //unique değil çünkü bir kullanıcı birden fazla sipariş verebilir
     },
-    coffee_Id: {
+    coffeeId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Coffee",
       required: true,
