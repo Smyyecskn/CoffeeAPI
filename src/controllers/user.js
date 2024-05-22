@@ -36,6 +36,8 @@ module.exports = {
      #swagger.summary = "Create User"
     */
 
+    req.body.isAdmin = false;
+
     const data = await User.create(req.body);
 
     /* SendMail *
@@ -44,8 +46,8 @@ module.exports = {
       "Welcome", // subject
       // Message
       `
-                <h1>Welcome ${data.username}</h1>
-                <p>Welcome to our system</p>
+                <h1>Welcome ${data.username},Hello ${data.username}!!!</h1>
+                <p>Welcome to CoffeeApi ☕☕☕</p>
             `
     );*/
 
@@ -64,12 +66,10 @@ module.exports = {
     // Manage only self-record.
     let customFilter = {};
     if (!req.user.isAdmin) {
-      // const data = await User.findOne({ _id: req.params.id, _id: req.user._id })
       customFilter = { _id: req.user._id };
     }
 
     const data = await User.findOne({ _id: req.params.id, ...customFilter });
-    // const data = await User.findOne({ _id: req.params.id, _id: req.user._id });
 
     res.status(200).send({
       error: false,
@@ -83,17 +83,19 @@ module.exports = {
       #swagger.summary = "Update User"
     */
 
-    // Manage only self-record.
-    let customFilter = {};
+    if (!req.user.isAdmin) {
+      delete req.body.isAdmin;
+    }
+
+    // Kullanıcı sadece kendı bılgılerını günceller
+    let customFilter = { _id: req.params.id };
     if (!req.user.isAdmin) {
       customFilter = { _id: req.user._id };
     }
 
-    const data = await User.updateOne(
-      { _id: req.params.id, ...customFilter },
-      req.body,
-      { runValidators: true }
-    );
+    const data = await User.updateOne({ ...customFilter }, req.body, {
+      runValidators: true,
+    });
 
     res.status(202).send({
       error: false,

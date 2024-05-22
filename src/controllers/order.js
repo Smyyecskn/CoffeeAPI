@@ -24,14 +24,14 @@ module.exports = {
             `
         */
 
-    // Manage only self-record.
-    let customFilter = {};
+    //! Kullanıcı sadece kendi bilgilerini değiştirebilir.
+    let customFilter = { _id: req.params.id };
     if (!req.user.isAdmin) {
-      customFilter = { userId: req.user.id };
+      customFilter = { _id: req.user._id };
     }
 
     // const data = await res.getModelList(Order, customFilter, ['userId', 'CoffeeId'])
-    const data = await res.getModelList(Order, customFilter, [
+    const data = await res.getModelList(Order, ...customFilter, [
       "userId",
       "coffeeId",
     ]);

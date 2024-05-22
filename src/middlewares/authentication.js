@@ -13,7 +13,6 @@ module.exports = async (req, res, next) => {
     const tokenData = await Token.findOne({ token: tokenKey[1] }).populate(
       "userId"
     );
-    console.log(tokenData); //userIdye populate = personnel modelını de getir.
 
     if (tokenData) req.user = tokenData.userId;
   }
