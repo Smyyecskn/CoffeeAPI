@@ -21,8 +21,8 @@ const UserSchema = new mongoose.Schema(
       //     'Password type is not correct.'
       // ],
       // set: passwordEncrypt
-      //? Yöntem-1:
-      set: (password) => {
+ 
+       set: (password) => {
         if (
           /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/.test(password)
         ) {

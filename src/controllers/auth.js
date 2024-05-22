@@ -2,8 +2,8 @@
 
 //!token oluşturma ve login logout kısımlarını yapma.
 
-const Personnel = require("../models/personnel.model");
-const Token = require("../models/token.model");
+const User = require("../models/user");
+const Token = require("../models/token");
 const passwordEncrypt = require("../helpers/passwordEncrypt"); //altta tokenData oluşturmak için import ettik.
 
 module.exports = {
@@ -18,7 +18,7 @@ module.exports = {
                 in: 'body',
                 required: 'true',
                 schema: {
-                    username: "testF0",
+                    username: "user1",
                     password: "1234"
                 }
             }
@@ -28,7 +28,7 @@ module.exports = {
     const { username, password } = req.body;
 
     if (username && password) {
-      const user = await Personnel.findOne({ username, password });
+      const user = await User.findOne({ username, password });
 
       if (user && user.isActive) {
         /* TOKEN */
@@ -90,7 +90,6 @@ module.exports = {
 
     res.status(200).send({
       error: false,
-      // message: 'Logout: Sessions Deleted.',
       message: "Logout: Token Deleted.",
       deleted,
     });

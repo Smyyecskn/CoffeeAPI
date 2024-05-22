@@ -1,8 +1,4 @@
 "use strict";
-/* -------------------------------------------------------
-    NODEJS EXPRESS | CLARUSWAY FullStack Team
-------------------------------------------------------- */
-// User Controller:
 
 const User = require("../models/user");
 const sendMail = require("../helpers/sendMail");
@@ -42,7 +38,7 @@ module.exports = {
 
     const data = await User.create(req.body);
 
-    /* SendMail */
+    /* SendMail *
     sendMail(
       data.email, // to
       "Welcome", // subject
@@ -51,7 +47,7 @@ module.exports = {
                 <h1>Welcome ${data.username}</h1>
                 <p>Welcome to our system</p>
             `
-    );
+    );*/
 
     res.status(201).send({
       error: false,
@@ -66,13 +62,13 @@ module.exports = {
     */
 
     // Manage only self-record.
-    let filter = {};
+    let customFilter = {};
     if (!req.user.isAdmin) {
       // const data = await User.findOne({ _id: req.params.id, _id: req.user._id })
-      filter = { _id: req.user._id };
+      customFilter = { _id: req.user._id };
     }
 
-    const data = await User.findOne({ _id: req.params.id, ...filter });
+    const data = await User.findOne({ _id: req.params.id, ...customFilter });
     // const data = await User.findOne({ _id: req.params.id, _id: req.user._id });
 
     res.status(200).send({
@@ -88,13 +84,13 @@ module.exports = {
     */
 
     // Manage only self-record.
-    let filter = {};
+    let customFilter = {};
     if (!req.user.isAdmin) {
-      filter = { _id: req.user._id };
+      customFilter = { _id: req.user._id };
     }
 
     const data = await User.updateOne(
-      { _id: req.params.id, ...filter },
+      { _id: req.params.id, ...customFilter },
       req.body,
       { runValidators: true }
     );

@@ -1,7 +1,7 @@
 "use strict";
 //!Kimlik kontrolu yapılacak.Tokenı ve kim oldugunu kontrol edicez.
 
-const Token = require("../models/token.model");
+const Token = require("../models/token");
 
 module.exports = async (req, res, next) => {
   // Authorization: Token ...

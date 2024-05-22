@@ -16,6 +16,15 @@ dbConnection();
 
 //Middlewares
 
+// Auhentication:
+app.use(require("./src/middlewares/authentication"));
+
+// findSearchSortPage / res.getModelList:
+app.use(require("./src/middlewares/queryHandler"));
+
+//Routes
+
+app.use(require("./src/routes"));
 
 app.all("/", (req, res) => {
   res.send({

@@ -252,5 +252,14 @@ module.exports = async function () {
       flavor_notes: ["Mango", "Ananas", "Kokos"],
     });
 
+
+      /* Category *
+  const Category = require("../models/category");
+  await Category.deleteMany(); // !!! Clear collection.
+  await Category.create({
+    _id: 2,
+    title: "Food",
+  });
+
   console.log("* Synchronized.");
 }
